@@ -114,7 +114,7 @@ Replacing missing data encoded with "-" in my Decreasing Chromosome files:
 >sed 's/?/-/g' decreasing\_sorted\_only\_Chromosome\_1\_maize.txt > completed\_decreasing\_sorted\_Chromosome\_1\_maize.txt
 
 Sorting my Chromosome files based on increasing position values:
-> sort -k4,4 Chromosome_1_maize.txt | awk '$3 != "multiple" && $3 != "unknown" {print;}' > completed\_increasing\_sorted\_Chromosome\_1\_maize.txt
+> sort -k3,3 Chromosome_1_maize.txt | awk '$3 != "multiple" && $3 != "unknown" {print;}' > completed\_increasing\_sorted\_Chromosome\_1\_maize.txt
 
 \# in the increasing files, the missing data encoded is already labeled as "?"
 
@@ -185,7 +185,7 @@ Separating the joined file into separate files for each chromosome:
 \#Above shows the command for organizing all of the data for chromosome 1 into one file, but this was repeated with every chromosome (1-10)
 
 Sorting my Chromosome files based on decreasing position values:
->sort -k4,4 -r Chromosome\_1\_maize.txt | awk '$3 != "multiple" && $3 != "unknown" {print;}' > decreasing\_sorted\_Chromosome\_1\_teosinte.txt
+>sort -k3,3 -r Chromosome\_1\_maize.txt | awk '$3 != "multiple" && $3 != "unknown" {print;}' > decreasing\_sorted\_Chromosome\_1\_teosinte.txt
 
 \#To remove the "unknown" and "multiple" positions in our Chromosome files I piped the sorted file to an awk command that pulls everything except those positions into a new file.
 
