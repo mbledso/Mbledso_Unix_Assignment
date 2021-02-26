@@ -101,12 +101,12 @@ Checking the number of lines in all files to see if they joined correctly:
 \# making sure these numers match shows that all the data from both files were joined together
 
 Separating the joined file into separate files for each chromosome:
->cat joined\_snp\_transposed\_genotype\_maize.txt | awk '$3 == "1" {print;}' > Chromosome\_1_\maize.txt
+>cat joined\_snp\_transposed\_genotype\_maize.txt | awk '$2 == "1" {print;}' > Chromosome\_1_\maize.txt
 
 \#Above shows the command for organizing all of the data for chromosome 1 into one file, but this was repeated with every chromosome (1-10)
 
 Sorting my Chromosome files based on decreasing position values:
->sort -k4,4 -r Chromosome\_1\_maize.txt | awk '$4 != "multiple" && $4 != "unknown" {print;}' > decreasing\_sorted\_only\_Chromosome\_1\_maize.txt
+>sort -k4,4 -r Chromosome\_1\_maize.txt | awk '$3 != "multiple" && $3 != "unknown" {print;}' > decreasing\_sorted\_only\_Chromosome\_1\_maize.txt
 
 \#To remove the "unknown" and "multiple" positions in our Chromosome files I piped the sorted file to an awk command that pulls everything except those positions into a new file.
 
@@ -114,18 +114,18 @@ Replacing missing data encoded with "-" in my Decreasing Chromosome files:
 >sed 's/?/-/g' decreasing\_sorted\_only\_Chromosome\_1\_maize.txt > completed\_decreasing\_sorted\_Chromosome\_1\_maize.txt
 
 Sorting my Chromosome files based on increasing position values:
-> sort -k4,4 Chromosome_1_maize.txt | awk '$4 != "multiple" && $4 != "unknown" {print;}' > completed\_increasing\_sorted\_Chromosome\_1\_maize.txt
+> sort -k4,4 Chromosome_1_maize.txt | awk '$3 != "multiple" && $3 != "unknown" {print;}' > completed\_increasing\_sorted\_Chromosome\_1\_maize.txt
 
 \# in the increasing files, the missing data encoded is already labeled as "?"
 
 Removing SNPs with unknown positions into its own file:
->cat joined\_snp\_transposed\_genotype\_maize.txt | awk '$4 == "unknown" {print;}' > SNPs_unknown_positions_maize.txt
+>cat joined\_snp\_transposed\_genotype\_maize.txt | awk '$3 == "unknown" {print;}' > SNPs_unknown_positions_maize.txt
 
 \# Now all SNPs in unknown positions are in one file together
 
 Removing SNPs with multiple positions into its own file:
 
->cat joined\_snp\_transposed\_genotype\_maize.txt | awk '$4 == "multiple" {print;}' > SNPs_multiple_positions_maize.txt
+>cat joined\_snp\_transposed\_genotype\_maize.txt | awk '$3 == "multiple" {print;}' > SNPs_multiple_positions_maize.txt
 
 \# Now all SNPs in multiple positions are in 1 file together 
 
@@ -171,28 +171,21 @@ Check if headers were sorted correctly:
 Checking if the snp_position.txt file is sorted:
 >sort -c snp_position.txt
 
-\#I already have the headers from the snp_position.txt file in snp_headers.txt
-
-Check to see if the sorted\_snp\_position.txt:
-> cut -f 1 sorted\_snp\_position.txt 
+\#I already have the separated columns from the snp\_position.txt file in real\_sorted\_snp\_position.txt
 
 Join the sorted snp file and the transposed genotype file:
->join -1 1 -2 1 sorted\_snp\_position.txt sorted\_transposed\_genotype\_teosinte.txt > joined\_snp\_transposed\_genotype\_teosinte.txt
+>join -1 1 -2 1 real\_sorted\_snp\_position.txt sorted\_transposed\_genotype\_teosinte.txt > joined\_snp\_transposed\_genotype\_teosinte.txt
 
 Checking the number of lines in all files to see if they joined correctly:
 >wc -l sorted\_snp\_position.txt sorted\_transposed\_gentoype\_teosinte.txt joined\_snp\_transposed\_genotype\_teosinte.txt
 
->
->986 986 986 
-> 
-
 Separating the joined file into separate files for each chromosome:
->cat joined\_snp\_transposed\_genotype\_teosinte.txt | awk '$3 == "1" {print;}' > Chromosome\_1_\teosinte.txt
+>cat joined\_snp\_transposed\_genotype\_teosinte.txt | awk '$2 == "1" {print;}' > Chromosome\_1_\teosinte.txt
 
 \#Above shows the command for organizing all of the data for chromosome 1 into one file, but this was repeated with every chromosome (1-10)
 
 Sorting my Chromosome files based on decreasing position values:
->sort -k4,4 Chromosome\_1\_maize.txt | awk '$4 != "multiple" && $4 != "unknown" {print;}' > decreasing\_sorted\_Chromosome\_1\_teosinte.txt
+>sort -k4,4 Chromosome\_1\_maize.txt | awk '$3 != "multiple" && $3 != "unknown" {print;}' > decreasing\_sorted\_Chromosome\_1\_teosinte.txt
 
 \#To remove the "unknown" and "multiple" positions in our Chromosome files I piped the sorted file to an awk command that pulls everything except those positions into a new file.
 
@@ -200,29 +193,29 @@ Replacing missing data encoded with "-" in my Decreasing Chromosome files:
 >sed 's/?/-/g' decreasing\_sorted\_only\_Chromosome\_1\_teosinte.txt > completed\_decreasing\_sorted\_Chromosome\_1\_teosinte.txt
 
 Sorting my Chromosome files based on increasing position values:
-> sort -k4,4 Chromosome_1_teosinte.txt | awk '$4 != "multiple" && $4 != "unknown" {print;}' > completed\_increasing\_sorted\_Chromosome\_1\_teosinte.txt
+> sort -k4,4 Chromosome_1_teosinte.txt | awk '$3 != "multiple" && $3 != "unknown" {print;}' > completed\_increasing\_sorted\_Chromosome\_1\_teosinte.txt
 
 \# in the increasing files, the missing data encoded is already labeled as "?"
 
 Removing SNPs with unknown positions into its own file:
->cat joined\_snp\_transposed\_genotype\_teosinte.txt | awk '$4 == "unknown" {print;}' > SNPs\_unknown\_positions\_teosinte.txt
+>cat joined\_snp\_transposed\_genotype\_teosinte.txt | awk '$3 == "unknown" {print;}' > SNPs\_unknown\_positions\_teosinte.txt
 
 \# Now all SNPs in unknown positions are in one file together
 
 Removing SNPs with multiple positions into its own file:
 
->cat joined\_snp\_transposed\_genotype\_maize.txt | awk '$4 == "multiple" {print;}' > SNPs\_multiple\_positions\_maize.txt
+>cat joined\_snp\_transposed\_genotype\_maize.txt | awk '$3 == "multiple" {print;}' > SNPs\_multiple\_positions\_teostine.txt
 
 \# Now all SNPs in multiple positions are in one file together 
 
 \# All files for maize are completed
 
 Adding the completed files onto my git repository:
->mv completed* /home/mbledso/Mbledso\_Unix\_Assignment/Teosinte\_completed\_files
+>mv completed* /home/mbledso/Mbledso\_Unix\_Assignment/Teosinte\_files
 
->mv SNPs_unknown_positions.txt /home/mbledso/Mbledso\_Unix\_Assignment/Teosinte\_completed\_files
+>mv SNPs_unknown_positions.txt /home/mbledso/Mbledso\_Unix\_Assignment/Teosinte\_files
 
-> mv SNPs_multiple_positions.txt /home/mbledso/Mbledso\_Unix\_Assignment/Teosinte\_completed\_files
+> mv SNPs_multiple_positions.txt /home/mbledso/Mbledso\_Unix\_Assignment/Teosinte\_files
 
 \#I can now add, commit, and push these files onto my remote repository
 >git add .
