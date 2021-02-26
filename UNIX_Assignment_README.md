@@ -106,7 +106,7 @@ Separating the joined file into separate files for each chromosome:
 \#Above shows the command for organizing all of the data for chromosome 1 into one file, but this was repeated with every chromosome (1-10)
 
 Sorting my Chromosome files based on decreasing position values:
->sort -k4,4 -r Chromosome\_1\_maize.txt | awk '$3 != "multiple" && $3 != "unknown" {print;}' > decreasing\_sorted\_only\_Chromosome\_1\_maize.txt
+>sort -k4,4 -r Chromosome\_1\_maize.txt | awk '$3 != "multiple" && $3 != "unknown" {print;}' > decreasing\_sorted\_Chromosome\_1\_maize.txt
 
 \#To remove the "unknown" and "multiple" positions in our Chromosome files I piped the sorted file to an awk command that pulls everything except those positions into a new file.
 
@@ -185,7 +185,7 @@ Separating the joined file into separate files for each chromosome:
 \#Above shows the command for organizing all of the data for chromosome 1 into one file, but this was repeated with every chromosome (1-10)
 
 Sorting my Chromosome files based on decreasing position values:
->sort -k4,4 Chromosome\_1\_maize.txt | awk '$3 != "multiple" && $3 != "unknown" {print;}' > decreasing\_sorted\_Chromosome\_1\_teosinte.txt
+>sort -k4,4 -r Chromosome\_1\_maize.txt | awk '$3 != "multiple" && $3 != "unknown" {print;}' > decreasing\_sorted\_Chromosome\_1\_teosinte.txt
 
 \#To remove the "unknown" and "multiple" positions in our Chromosome files I piped the sorted file to an awk command that pulls everything except those positions into a new file.
 
