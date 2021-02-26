@@ -98,12 +98,7 @@ Join the sorted snp file and the transposed genotype file:
 Checking the number of lines in all files to see if they joined correctly:
 >wc -l sorted\_snp\_position.txt sorted\_transposed\_gentoype\_maize.txt joined\_snp\_transposed\_genotype\_maize.txt
 
->
->986 986 986 
-> 
-
-Sorting the new joined file by chromosome number (column 3):
->sort -k3 joined\_snp\_transposed\_genotype\_maize.txt | head
+\# making sure these numers match shows that all the data from both files were joined together
 
 Separating the joined file into separate files for each chromosome:
 >cat joined\_snp\_transposed\_genotype\_maize.txt | awk '$3 == "1" {print;}' > Chromosome\_1_\maize.txt
