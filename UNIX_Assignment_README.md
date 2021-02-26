@@ -89,6 +89,8 @@ Sort snp_position.txt file and checking that is was sorted correctly:
 >tail -n +2 snp_position.txt | sort -k1,1 > sorted\_snp\_position.txt
 > cut -f 1 sorted\_snp\_position.txt
 
+Removing colums 1, 3, and 4 from the sorted snp file:
+> cut -f 1,3,4 sorted\_snp\_position.txt > real\_sorted\_snp\_position.txt
 
 Join the sorted snp file and the transposed genotype file:
 >join -1 1 -2 1 sorted\_snp\_position.txt sorted\_transposed\_genotype\_maize.txt > joined\_snp\_transposed\_genotype\_maize.txt
